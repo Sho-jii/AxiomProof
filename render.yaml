@@ -1,0 +1,26 @@
+services:
+  - type: web
+    name: scholarflow
+    runtime: node
+    plan: free
+    region: oregon
+    buildCommand: npm install -g pnpm && pnpm install && pnpm build
+    startCommand: pnpm start
+    healthCheckPath: /
+    envVars:
+      - key: NODE_VERSION
+        value: 20
+      - key: NEXT_PUBLIC_SUPABASE_URL
+        sync: false
+      - key: NEXT_PUBLIC_SUPABASE_ANON_KEY
+        sync: false
+      - key: SUPABASE_SERVICE_ROLE_KEY
+        sync: false
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: FAST_MODEL
+        value: gemini-3.1-flash-lite
+      - key: DEEP_ANALYSIS_MODEL
+        value: gemini-3.5-flash-lite
+      - key: MOCK_AI_RESPONSES
+        value: "false"
